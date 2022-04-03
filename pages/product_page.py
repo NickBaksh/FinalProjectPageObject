@@ -3,12 +3,16 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage, ProductPageLocators):
-    def should_be_add_to_basket_btn(self):
-        assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET_BUTTON), f"Add to basket button is not presented"
 
     def product_add_to_basket(self):
         basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         basket_button.click()
+
+    def should_be_message_about_adding(self):
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), f"Product name is not presented"
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_PRICE)
+        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        message = self.browser.find_element(*ProductPageLocators.MESSAGE_PRICE)
 
     def get_code(self):
         self.solve_quiz_and_get_code()
