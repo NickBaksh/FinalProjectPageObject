@@ -8,11 +8,9 @@ class ProductPage(BasePage, ProductPageLocators):
         basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         basket_button.click()
 
-    def should_be_message_about_adding(self):
+    def elements_should_be_presented(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), f"Product name is not presented"
-        assert self.is_element_present(*ProductPageLocators.PRODUCT_PRICE)
-        product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-        message = self.browser.find_element(*ProductPageLocators.MESSAGE_PRICE)
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_PRICE), f"Product price is not presented"
 
     def get_code(self):
         self.solve_quiz_and_get_code()
