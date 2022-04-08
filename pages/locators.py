@@ -16,3 +16,8 @@ class ProductPageLocators():
     PRODUCT_NAME = (By.CSS_SELECTOR, "div h1")
     SUCCESS_ADD_TO_BASKET_MESSAGE = (By.CSS_SELECTOR, "#messages strong")
     MESSAGE_PRICE = (By.XPATH, "//div[@class='alertinner ']/p/strong")
+
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
