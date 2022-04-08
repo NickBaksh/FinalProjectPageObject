@@ -12,6 +12,15 @@ class ProductPage(BasePage, ProductPageLocators):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_NAME), f"Product name is not presented"
         assert self.is_element_present(*ProductPageLocators.PRODUCT_PRICE), f"Product price is not presented"
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_ADD_TO_BASKET_MESSAGE), f"Success add to " \
+                                                                                                f"basket message is " \
+                                                                                                f"presented "
+
+    def should_dissapear_of_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_ADD_TO_BASKET_MESSAGE), f"Success add to basket message " \
+                                                                                        f"is not dissapear"
+
     def get_code(self):
         self.solve_quiz_and_get_code()
 
