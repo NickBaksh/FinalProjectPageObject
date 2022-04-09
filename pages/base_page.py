@@ -61,3 +61,8 @@ class BasePage():
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def open_basket(self):
+        assert self.is_element_present(*BasePageLocators.BASKET_BUTTON), f"'Go to basket' button is not presented"
+        link = self.browser.find_element(*BasePageLocators.BASKET_BUTTON)
+        link.click()

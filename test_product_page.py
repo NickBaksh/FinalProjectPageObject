@@ -1,6 +1,5 @@
-import pytest
 from .pages.product_page import ProductPage
-import time
+from .pages.basket_page import BasketPage
 
 #@pytest.mark.parametrize('promo', ["1", "2", "3", "4", "5", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"])
 #def test_add_to_basket_and_get_code(browser, promo):
@@ -34,7 +33,8 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.open()
     page.product_add_to_basket()
     page.should_dissapear_of_success_message()
-'''
+
+
 
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
@@ -42,9 +42,21 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
+
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
-    time.sleep(60)
     page.go_to_login_page()
+'''
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.open_basket()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.basket_is_empty()
+    basket_page.basket_is_empty_message()
+
